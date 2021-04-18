@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const LinkSubmitter = ({ setType, setLinkMessage }) => {
   const [longLink, setLongLink] = useState('');
@@ -13,18 +14,32 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
     return true;
   };
 
+  let prefix = '';
+
   const requestLink = async () => {
-    if (isURL(longLink)) {
-      // TODO: fetch POST request
-      //const { type, linkMessage } = await 
-      setType('link');
-      setLinkMessage(longLink);
+    if (!(longLink.startsWith('http://') || longLink.startsWith('https://'))) {
+      if (longLink.startsWith('www.')) {
+        prefix = 'http://';
+      } else {
+        prefix = 'http://www.';
+      }
+    }
+
+    if (isURL(prefix + longLink)) {
+      try {
+        const { data: { data: { to } } } = await axios.post(
+          `${process.env.REACT_APP_API_HOST}/api/short`, { link: prefix + longLink }
+        );
+
+        setType('link');
+        setLinkMessage(`${process.env.REACT_APP_API_HOST}/${to}`);
+      } catch ({ response: { data: { msg } } }) {
+        setType('error');
+        setLinkMessage(msg);
+      }
     } else {
       setType('error');
-      setLinkMessage({
-        msg: 'Cannot shorten an invalid link!',
-        err: null
-      });
+      setLinkMessage('Cannot shorten an invalid link!');
     }
   };
 
