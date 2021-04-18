@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use('/api/short',linkRouter);
 
-const port = process.env.API_PORT;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`App is listening at http://localhost:${port}`);
 });
