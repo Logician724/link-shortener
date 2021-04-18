@@ -18,6 +18,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "postinstall": "npm run build",
     "start": "node server.js",
     "fend-start": "react-scripts start",
     "build": "react-scripts build",
