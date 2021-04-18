@@ -1,20 +1,25 @@
 import React from 'react';
 
 const LinkViewer = ({ type, linkMessage }) => {
-  let message = <div></div>;
   switch (type) {
   case 'error':
-    message = <div>Error: {linkMessage}</div>;
-    break;
+    return (
+      <div>
+        <a href="">{ linkMessage }</a>
+      </div>
+    );
   case 'link':
-    message = <div>Shortened Link: {linkMessage}</div>;
-    break;
+    return (
+      <div>
+        <a href="">{ linkMessage }</a>
+      </div>
+    );
   case 'none':
-    message = <div></div>;
-    break;
+    return (
+      <div></div>
+    );
   }
 
-  return message;
 };
 
 export default LinkViewer;

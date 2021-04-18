@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
 const LinkSubmitter = ({ setType, setLinkMessage }) => {
   const [longLink, setLongLink] = useState('');
@@ -14,15 +15,11 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
     return true;
   };
 
-  let prefix = '';
-
   const requestLink = async () => {
+    let prefix = '';
+
     if (!(longLink.startsWith('http://') || longLink.startsWith('https://'))) {
-      if (longLink.startsWith('www.')) {
-        prefix = 'http://';
-      } else {
-        prefix = 'http://www.';
-      }
+      prefix = 'http://';
     }
 
     if (isURL(prefix + longLink)) {
@@ -49,13 +46,18 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
         e.preventDefault();
         requestLink();
       }}>
-        <input
-          type="text"
-          value={longLink}
-          placeholder="Your link goes here..."
-          onChange={(e) => setLongLink(e.target.value)}
-        />
-        <button>Submit</button>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Your link goes here..."
+            aria-label="Your link goes here..."
+            aria-describedby="link submission form"
+            value={longLink}
+            onChange={(e) => setLongLink(e.target.value)}
+          />
+          <InputGroup.Append>
+            <Button variant="dark">Submit</Button>
+          </InputGroup.Append>
+        </InputGroup>
       </form>
     </div>
   );
