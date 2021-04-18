@@ -2,8 +2,12 @@ require('dotenv').config();
 require('./api/config/db');
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 const app = express();
 const linkRouter = require('./api/links.router');
+
+app.use(helmet());
+app.use(express.json());
 app.use(cors());
 
 
