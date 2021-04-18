@@ -3,12 +3,29 @@ import React, { useState } from 'react';
 const LinkSubmitter = ({ setType, setLinkMessage }) => {
   const [longLink, setLongLink] = useState('');
 
-  const requestLink = async () => {
-    // TODO: fetch POST request
-    //const { type, linkMessage } = await 
+  const isURL = (link) => {
+    try {
+      new URL(link);
+    } catch (_) {
+      return false;
+    }
 
-    setType('link');
-    setLinkMessage(longLink);
+    return true;
+  };
+
+  const requestLink = async () => {
+    if (isURL(longLink)) {
+      // TODO: fetch POST request
+      //const { type, linkMessage } = await 
+      setType('link');
+      setLinkMessage(longLink);
+    } else {
+      setType('error');
+      setLinkMessage({
+        msg: 'Cannot shorten an invalid link!',
+        err: null
+      });
+    }
   };
 
   return (
