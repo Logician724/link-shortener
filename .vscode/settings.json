@@ -2,5 +2,7 @@
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[javascriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  },
+  "editor.tabSize": 2,
+  "files.eol": "\n"
 }
