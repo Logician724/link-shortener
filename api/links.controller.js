@@ -19,6 +19,13 @@ const createLink = async url => {
 
 module.exports.shortenLink = async (req, res) => {
   try {
+    const existingLink = await Link.findOne({ from: req.body.link });
+    if(existingLink) {
+      return res.status(200).send({
+        msg: 'Successfully created shortened link',
+        data: newLink
+      });
+    }
     await createLink(req.body.link);
     const newLink = await Link.findOne({ from: req.body.link }).orFail();
     return res.status(201).send({
