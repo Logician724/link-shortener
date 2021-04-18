@@ -3,7 +3,7 @@ require('./api/config/db');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const linkRouter = require('./api/link.router');
+const linkRouter = require('./api/links.router');
 app.use(cors());
 
 
