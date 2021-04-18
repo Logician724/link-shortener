@@ -1,5 +1,5 @@
 const Link = require('./links.model');
-const getRandomString = () => Math.random().toString(32);
+const getRandomString = () => Math.random().toString(16).substring(0,6);
 const createLink = async url => {
   const link = new Link({
     from: url,
@@ -23,7 +23,7 @@ module.exports.shortenLink = async (req, res) => {
     if(existingLink) {
       return res.status(200).send({
         msg: 'Successfully created shortened link',
-        data: newLink
+        data: existingLink
       });
     }
     await createLink(req.body.link);
