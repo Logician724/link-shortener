@@ -29,7 +29,7 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
         );
 
         setType('link');
-        setLinkMessage(`${process.env.REACT_APP_API_HOST}/${to}`);
+        setLinkMessage(`${window.location.protocol}//${window.location.host}/#/${to}`);
       } catch ({ response: { data: { msg } } }) {
         setType('error');
         setLinkMessage(msg);
@@ -55,7 +55,7 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
             onChange={(e) => setLongLink(e.target.value)}
           />
           <InputGroup.Append>
-            <Button variant="dark">Submit</Button>
+            <Button type="submit" variant="dark">Submit</Button>
           </InputGroup.Append>
         </InputGroup>
       </form>

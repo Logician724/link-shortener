@@ -5,13 +5,13 @@ const LinkViewer = ({ type, linkMessage }) => {
   case 'error':
     return (
       <div>
-        <a href="">{ linkMessage }</a>
+        { linkMessage }
       </div>
     );
   case 'link':
     return (
       <div>
-        <a href="">{ linkMessage }</a>
+        <a href={`${linkMessage}`}>{ linkMessage }</a>
       </div>
     );
   case 'none':

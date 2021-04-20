@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter} from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import Redirector from './Redirector';
 
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <App />
+      <Switch>
+        <Route path="/error/:shortLink">
+          <App />
+        </Route>
+        <Route path="/:shortLink">
+          <Redirector />
+        </Route>
+        <Route path="/">
+          <App />
+        </Route>
+      </Switch>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')

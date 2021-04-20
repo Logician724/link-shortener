@@ -1,5 +1,6 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import LinkViewer from './LinkViewer';
 import LinkSubmitter from './LinkSubmitter';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -8,6 +9,15 @@ function App() {
   const [type, setType] = useState('none');
   const [linkMessage, setLinkMessage] = useState('');
 
+  let { shortLink } = useParams();
+
+  useEffect(() => {
+    if (shortLink) {
+      setType('error');
+      setLinkMessage(`${window.location.protocol}//${window.location.host}/#/${shortLink} does not exist`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="App">
