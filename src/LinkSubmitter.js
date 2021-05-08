@@ -6,14 +6,10 @@ const LinkSubmitter = ({ setType, setLinkMessage }) => {
   const [longLink, setLongLink] = useState('');
 
   const isURL = (link) => {
-    try {
-      new URL(link);
-    } catch (_) {
-      return false;
-    }
-
-    return true;
+    const res = link.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g);
+    return (res !== null);
   };
+
 
   const requestLink = async () => {
     let prefix = '';
