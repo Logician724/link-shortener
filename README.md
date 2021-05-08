@@ -16,7 +16,7 @@ npm install
 npm run fend-start
 ```
 
-- Start the node.js LnkShrtnr server
+- Start the node.js ShrLnk server
 ```
 npm start
 ```
