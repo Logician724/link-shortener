@@ -24,7 +24,7 @@ function App() {
       <Container>
         <Row className="justify-content-md-center mb-4">
           <Col>
-            <h1 className="display-1">LnkShrtnr</h1>
+            <h1 className="display-1">ShrLnk</h1>
           </Col>
         </Row>
         <Row className="justify-content-md-center mb-4">
